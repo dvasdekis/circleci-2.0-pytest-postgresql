@@ -19,6 +19,10 @@ jobs:
           
       # database dev instance
       - image: circleci/postgres:11.2-alpine-ram
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: ""
           
       # postgrest database connector
       - image: postgrest/postgrest
