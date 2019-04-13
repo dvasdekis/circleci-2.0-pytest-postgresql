@@ -6,7 +6,7 @@ from app import my_app
 from app.connect_to_db import connect_to_db
 
 
-DATABASE = os.getenv('DATABASE_NAME')
+DATABASE = os.getenv('POSTGRES_DB')
 
 SQL_QUERY = """
 CREATE SCHEMA trains;
