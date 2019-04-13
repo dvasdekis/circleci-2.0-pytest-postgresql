@@ -2,13 +2,14 @@ version: 2
 jobs:
   build:
     environment: #match these to your .env file!
-      DATABASE_URL: postgres://ubuntu@localhost:5432/circle_test
-      DATABASE_NAME: circle_test
-      DATABASE_USER: ubuntu
-      DATABASE_PASSWORD: ""
-      DATABASE_SCHEMA: public
+      PGRST_DB_URI: postgres://ubuntu@localhost:5432/circle_test
+      POSTGRES_DB: circle_test
+      POSTGRES_USER: ubuntu
+      POSTGRES_PASSWORD: ""
       DATABASE_HOSTNAME: localhost
       DATABASE_PORT: 5432
+      PGRST_DB_ANON_ROLE: ubuntu
+      PGRST_DB_SCHEMA: public
       
     working_directory: ~/circleci-2.0-pytest-postgresql
     
@@ -25,10 +26,6 @@ jobs:
           
       # postgrest database connector
       - image: postgrest/postgrest
-        environment:
-          PGRST_DB_URI: $DATABASE_URL
-          PGRST_DB_SCHEMA: $DATABASE_SCHEMA
-          PGRST_DB_ANON_ROLE: $DATABASE_USER #In production this role should not be the same as the one used for the connection
       
     steps:
       - checkout
@@ -42,7 +39,7 @@ jobs:
             pip install -r requirements.txt
       - run:
           name: Setup the database
-          command: psql -h $DATABASE_HOSTNAME -p $DATABASE_PORT -U $DATABASE_USER -d $DATABASE_NAME -a -f schema.sql
+          command: psql -h $DATABASE_HOSTNAME -p $DATABASE_PORT -U $POSTGRES_USER -d $POSTGRES_DB -a -f schema.sql
       - run:
           name: Run the Tests
           command: |
