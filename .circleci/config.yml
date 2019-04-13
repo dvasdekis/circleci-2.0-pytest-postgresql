@@ -15,8 +15,6 @@ jobs:
     docker:
       # main python worker image
       - image: circleci/python:3.7.3
-        environment:
-          DB_NAME: {$DATABASE_NAME}
           
       # database dev instance
       - image: circleci/postgres:11.2-alpine-ram
