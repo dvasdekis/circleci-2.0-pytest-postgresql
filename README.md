@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/dvasdekis/circleci-2.0-pytest-postgresql.svg?style=svg)](https://circleci.com/gh/dvasdekis/circleci-2.0-pytest-postgresql)
 
+TODO: How do we get Docker to build this environment and persist it?
+
 Example configuration for python + postgresql with CircleCI
 
 ---
