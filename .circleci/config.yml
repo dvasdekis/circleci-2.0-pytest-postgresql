@@ -26,6 +26,10 @@ jobs:
           
       # postgrest database connector
       - image: postgrest/postgrest
+        environment:
+          PGRST_DB_URI: postgres://ubuntu@localhost:5432/circle_test
+          PGRST_DB_ANON_ROLE: ubuntu
+          PGRST_DB_SCHEMA: public
       
     steps:
       - checkout
